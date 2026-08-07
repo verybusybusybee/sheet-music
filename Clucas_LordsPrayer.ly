@@ -1,12 +1,13 @@
 \version "2.26.0"
-#(set-global-staff-size 18.5) 
+#(set-global-staff-size 17) 
 % 17 to 18.5
 
 
 \header {
+  dedication = \markup { \italic { "For Michael Barry (1981)" } }
   title = "The Lord’s Prayer"
-  composer = "Robert Stone"
-  arranger = "(1516 – 1613)"
+  composer = "Humphrey Clucas"
+  arranger = "(b. 1941)"
   tagline = \markup {
     \abs-fontsize #7.5 "Digitally engraved for Joe Watson and the Choir of Coventry Cathedral by Eugene Chan (2026)"
   }
@@ -33,70 +34,130 @@
 }
 
 global = {
-  \key aes \major
+  \key d \major
   \omit Staff.TimeSignature
-  \cadenzaOn
+  % \cadenzaOn
   % \time 4/2
+  \tempo "Moderato"
 }
 
 sopMusic = \relative {
-  c''1 c2 c c1 bes2 bes des1 \bar "|"
-  c2. c4 c2 c bes bes1 \bar "|"
-  c c bes2 a1 \bar "|"
-  aes?2 aes1 aes2 aes bes aes1 aes g2 aes bes aes1 \bar "|"
-  des1 c2 bes aes1 bes c bes2 bes1 \bar "|"
-  bes1 bes2 c1 c2 c des1 c2 c1 \bar "|"
-  c bes2 aes bes1 des2 des c1 bes2 aes g1 aes \bar "|"
-  aes2 aes1 bes2 a1 a2 bes1 c2 des2. des4 c1 \bar "|"
-  c2 c ees1 des2 c bes aes aes bes2.( c4 a2) bes1 \bar "|."
+  \time 7/4 
+  R1*7/4 \bar "|"
+  r2 d''2 d4( cis) cis~ \bar "|"
+  \time 4/4
+  cis r4 r2 \bar "|"
+  \time 6/4
+  r4 d d cis cis2~ \bar "|"
+  \time 7/4
+  cis4 r2 r4 e cis2~ \bar "|" \break
+  \time 6/4
+  cis4 r2 r r4 \bar "|"
+  \time 5/4
+  r1 e4~ \bar "|"
+  e dis dis2 r4 \bar "|"
+  \time 6/4
+  dis! e dis fis2 dis4 \bar "|" \break
+  \time 4/4
+  fis dis! dis2~ \bar "|" 
+  \time 5/4
+  dis4 r1 \bar "|"
+  \time 4/4
+  r4 e dis! cis \bar "|"
+  \time 7/4 \dynamicUp
+  fis( e) dis! cis b4.\> b8 a4 \bar "|" \break
+  \time 8/4
+  cis2 cis4\! r1 r4 \bar "|"
+  \time 6/4
+  r4 e2\>  cis\! r4 \bar "|"
+  \time 4/4
+  R1*4/4 \bar "|" \dynamicNeutral
+  r4 cis4( b d \bar "|"
+  cis2)\> cis2\!\fermata \bar "|."
 }
-sopWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
-  
+sopWords = \lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \markup { \dynamic "mp" }
+  Our Fa -- ther, __
+  which art in heav'n, __
+  hal -- lowed __ 
+  \set stanza = \markup { \dynamic "mf" } be __ thy name. Give us this day our
+  dai -- ly bread. __ As we for -- 
+  give __ them that tres -- pass a -- gainst us. \set stanza = \markup { \dynamic "mp" } Fa -- ther.
+  \set stanza = \markup { \dynamic "p" } A -- men.
 }
 
 altoMusic = \relative { 
-  aes'1 aes2 aes aes1 g2 g aes1
-  aes2. aes4 aes2 aes f g1
-  aes aes f2 f1 
-  f2 f1 f2 f des f1 ees ees2 c f f1
-  f f2 f f1 g aes f2 g1
-  g1 g2 aes1 aes2 aes f1 aes2 aes1
-  aes g2 f g1 aes2 aes aes1 g2 c, ees1 ees 
-  ees2 f1 des2 f1 f2 f1 aes2 aes2. aes4 aes1
-  aes2 aes aes1 f2 aes des, f f des( f1) f
+  fis'2 fis4( g) g2 g4
+  fis e g2~ g2.
+  g4. g8 fis4 e
+  fis1.
+  fis4 a2 fis4 a2.
+  fis4 fis2 fis4 gis! fis
+  \override DynamicTextSpanner.style = #'none
+  \crescTextCresc
+  a2\< a8\! a gis4 fis gis!1 r4
+  gis!4 a gis fis2 gis4
+  a gis! gis4. r8
+  fis4 gis! a4. gis8 fis4
+  a4. a8 a2~
+  a2. r4 r2 e4
+  gis2 gis4 a2 a4 fis e
+  fis2 fis e4 fis
+  \set crescendoText = \markup { \italic { dim. e poco rit. } }
+  \override DynamicTextSpanner.style = #'none
+  g!4.\< g8\! fis4 e
+  g2 g2~ g4 r4 r2\fermata
 }
-altoWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
-  Our Fa -- ther which art in heav'n, hal -- low -- ed by thy name; thy king -- dom come; 
-  thy will be done in earth as it is in heav'n. Give us this day our dai -- ly bread.
-  And for -- give us our tres -- pas -- ses, as we for -- give them that tres -- pass a -- gainst us.
-  And lead us not in -- to temp -- ta -- ti -- on; but de -- liv -- er us from ev -- il. A -- men.
+altoWords = 
+\lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \markup { \dynamic "mp" }
+  Our Fa -- ther, which art in heav'n, __ hal -- lowed be thy 
+  name; thy king -- dom come; thy will be done, in
+  earth as it is in heav'n. \set stanza = \markup { \dynamic "mf" } Give us this day our
+  dai -- ly bread. \set stanza = \markup { \dynamic "mp" } And for -- give us our tres -- pas -- ses, __ 
+  and lead us not in -- to temp -- ta -- tion; but de --
+  li -- ver us from e -- vil. __
 }
 
 tenorMusic = \relative {
-  ees'1 ees2 ees ees1 ees2 ees f1
-  ees2. ees4 ees2 c d ees1
-  ees f des2 c1 
-  c2 c1 c2 des bes c1 c bes2 aes des c1
-  bes aes2 des c1 ees ees d2 ees1
-  ees ees2 ees1 f2 f des1 ees2 ees1
-  ees ees2 c ees1 f2 f ees1 ees2 aes, bes1 c
-  c2 des1 bes2 c1 c2 des1 ees2 f2. f4 f1
-  ees2 ees c1 des2 ees bes c c bes( c1) d
+  cis'2 cis4( d4) d2 d4
+  cis b d2~ d2.
+  d4. d8 cis4 b
+  cis1.
+  cis4 fis2 cis4 fis2.
+  d4 d2 d4 e d
+  d2 d8 d e4 d
+  dis1 r4
+  dis!4 e dis cis2 dis4
+  e dis! dis4. r8
+  cis4 dis! e4. dis8 cis4
+  e4. e8 e2~
+  e2. r4 r2 e4
+  e2 e4 e2 e4 cis cis
+  cis2 cis2 b4 cis
+  d!4. d8 cis4 b4
+  d2 d2~ d4 r4 r2\fermata
 }
 tenorWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
   
 }
 
 bassMusic = \relative {
-  aes1 aes2 aes aes1 ees2 ees des1
-  aes'2. aes4 aes2 aes bes ees,1
-  aes f bes2 f1
-  f2 f1 f2 des ges f1 aes ees2 f des f1
-  bes f2 des f1 ees aes bes2 ees,1
-  ees ees2 aes1 f2 f bes1 aes2 aes1
-  aes ees2 f ees1 des2 des aes'1 ees2 f ees1 aes
-  aes2 des,1 ges2 f1 f2 bes1 aes2 des,2. des4 f1
-  aes2 aes aes1 bes2 aes ges! f f ges!( f1) bes,1
+  a2 a4( b) b2 b4
+  a g b2~ b2.
+  b4. b8 a4 g
+  a1.
+  a4 cis2 a4 cis2. 
+  a4 a2 a4 b a
+  cis2 cis8 cis b4 a
+  gis1 r4
+  b cis b a2 b4
+  cis b b4. r8
+  a4 b cis4. b8 a4
+  cis4. cis8 cis2~
+  cis2. r4 r2 cis4
+  b2 b4 cis2 cis4 a gis
+  a2 a gis4 a
+  b4. b8 a4 g!
+  b2 b2~ b4 r4 r2
 }
 bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
   
@@ -107,19 +168,20 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
     \Score
     measureBarType = #'()
     \override LyricText.font-name = "Palatino Linotype"
-    \override LyricText.font-size = #-1
+    \override LyricText.font-size = #-0.5
   }
 }
 
 
 \score {
-    \shiftDurations #1 #0
-    \new ChoirStaff <<
+    % \shiftDurations #1 #0
+    \new ChoirStaff << 
     \new Lyrics = "sopranos" \with {
       % this is needed for lyrics above a staff
       \override VerticalAxisGroup.staff-affinity = #DOWN
     }
-    \new Staff = "women" <<
+    \new Staff = "women" \with {
+    \consists "Merge_rests_engraver" } <<
         \new Voice = "sopranos" {
         \voiceOne
         << \global \sopMusic >>
@@ -134,7 +196,8 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
       % this is needed for lyrics above a staff
       \override VerticalAxisGroup.staff-affinity = #DOWN
     }
-    \new Staff = "men" <<
+    \new Staff = "men" \with {
+    \consists "Merge_rests_engraver" } <<
       \clef bass
       \new Voice = "tenors" {
         \voiceOne
@@ -157,13 +220,13 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER
 }
 
 \markup {
-  \vspace #2 % Adds vertical space between the music and the text
+  \vspace #5 % Adds vertical space between the music and the text
   \fill-line {
     % \override #'(line-width . 115) % Adjust this number to change paragraph width
     \justify { \abs-fontsize #7.5 \override #'(baseline-skip . 10) {
-      The Wenley Partbooks of 1549-52 contains this work. The date of the Wanley books 
-      makes Stone’s setting one of the earliest in the Tudor period. The music 
-      is presented up a minor third, with quartered note values. } 
+      Together with his Closing Responses, this forms the companion set to Humphrey’s very well-known 
+      Preces and Responses of 1964, sung in most cathedrals in the land, according to his publisher,
+      Fagus Music. } 
     }
   }
 }
