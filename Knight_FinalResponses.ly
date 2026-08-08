@@ -187,6 +187,16 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \mar
   }
 }
 
+leftbrace = \markup {
+  \override #'(font-encoding . fetaBraces)
+  \lookup "brace60" 
+}
+
+rightbrace = \markup {
+  \override #'(font-encoding . fetaBraces)
+  \rotate #180
+  \lookup "brace60"
+}
 
 \score { 
     % \shiftDurations #1 #0
@@ -197,11 +207,32 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \mar
       Keep8 us, O Lord, so a -- wake in the du -- ties of our call4 -- ing; 8*26
       
       \override Lyrics.LyricText.extra-spacing-width = #'(-1.8 . 1.8)
-      \set stanza = "℣."
-      God8 grant to the living, grace; to the departed,4 rest;4 
-      to8 the Church, the King, the Commonwealth4
-      and8 all the world, __ 8 peace8 and con4 -- cord;  
-      \revert Lyrics.LyricText.extra-spacing-width
+        \set stanza = "℣."
+          God8 grant to the living, grace; to the departed,4 rest;4 
+          to8 the Church, the King, 
+        
+        \override Lyrics.LyricText.extra-offset = #'(0 . -1.5)
+          the8 Commonwealth4 and8 all16
+        \revert Lyrics.LyricText.extra-offset
+        
+        \revert Lyrics.LyricText.extra-spacing-width
+        \markup { \column { \vspace #(/ 1 3) { \leftbrace } } }16
+        \override Lyrics.LyricText.extra-spacing-width = #'(-1.8 . 1.8)
+
+        \markup { \column { the man } }8
+        \markup { \column { world, kind, } }8 
+        \markup { \column {  } }16
+        
+        \revert Lyrics.LyricText.extra-spacing-width
+        \markup { \column { \vspace #(/ 1 3) { \rightbrace } } }16
+        \override Lyrics.LyricText.extra-spacing-width = #'(-1.8 . 1.8)
+        
+        \override Lyrics.LyricText.extra-offset = #'(0 . -1.5)  
+        \override Lyrics.LyricHyphen.extra-offset = #'(0 . -1.5)
+        \override Lyrics.LyricExtender.extra-offset = #'(0 . -1.5)
+          peace8 and con4 -- cord;  
+        
+        \revert Lyrics.LyricText.extra-spacing-width
     }
     \new ChoirStaff << 
     \new Lyrics = "sopranos" \with {
@@ -256,7 +287,7 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \mar
 \midi { }
 
 }
-\markup { \vspace #1 }
+\markup { \vspace #0 }
 \markup {
   \fill-line {
     % ==================== LEFT HALF ====================
@@ -270,7 +301,7 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \mar
           
           \new Voice = "soprano" { \voiceOne \relative { } }
           \new Voice = "alto" { \voiceTwo \relative { 
-          fis8 a d cis \slurUp b4( \melisma a) \melismaEnd \bar "|" } }
+           } }
         >>
         
         \new Staff = "lower" <<
@@ -280,11 +311,12 @@ bassWords = \lyricmode { \set lyricMelismaAlignment = #CENTER \set stanza = \mar
           \clef bass
 
           \new Voice = "tenor" { \voiceOne \relative { } }
-          \new Voice = "bass" { \voiceTwo \relative { } }
+          \new Voice = "bass" { \voiceTwo \relative { 
+          fis8 a d cis \slurUp b4( \melisma a) \melismaEnd \bar "|" } }
         >>
 
-        \new Lyrics \with { alignBelowContext = "upper" } 
-          \lyricsto "alto" { 
+        \new Lyrics \with { alignBelowContext = "lower" } 
+          \lyricsto "bass" { 
           %\override Lyrics.LyricText.extra-spacing-width = #'(-1.8 . 1.8)
           \set stanza = "℟."
           \set lyricMelismaAlignment = #CENTER
